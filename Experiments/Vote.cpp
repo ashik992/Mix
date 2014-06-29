@@ -14,7 +14,9 @@ using namespace std;
 //==============================
 //Global variable seemed to be a
 //great plan for this code. Hope
-//you don't mind.
+//you don't mind. I also hope 
+//the name of the variable says
+//why it's used for clearly. :)
 //==============================
 int result[4][5];
 char head[4] = {'A','B','C','D'};
