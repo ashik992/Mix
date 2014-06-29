@@ -1,8 +1,21 @@
+//======================================
+//Things might look a little stupid in
+//this code. I haven't been programming
+//in C++ for almost a year... Sorry for
+//those kinda things.
+//======================================
+
 #include <iostream>
 #include <climits>
 #include <cstdlib>
 
 using namespace std;
+
+//==============================
+//Global variable seemed to be a
+//great plan for this code. Hope
+//you don't mind.
+//==============================
 int result[4][5];
 char head[4] = {'A','B','C','D'};
 int vote[4] = {0};
@@ -11,8 +24,12 @@ bool isRunOff = true;
 int first, second;
 int fstVote, sndVote;
 
-//read data form console
-//====================
+//==============================
+//read data form console. File 
+//system could be a useful thing
+//here.
+//==============================
+
 void readResult(){
    cout<<"Candidate-> ";
    for(int i=0; i<4;i++)
@@ -22,8 +39,8 @@ void readResult(){
    for(int i=0; i<5;i++){
       cout<<endl<<(i+1)<<"\t   ";
       for(int j=0; j<4;j++){
-         //cin>>result[i][j];
-         result[i][j] = 99 + rand() % 900;
+         cin>>result[i][j];
+         //result[i][j] = 99 + rand() % 900;
          vote[j] += result[i][j];
          toatalVote += result[i][j];
       }
@@ -32,9 +49,16 @@ void readResult(){
 }
 
 
-//write data to console
-//====================
+//==============================
+//Guess we are still gonna stick
+//with the console for output.
+//==============================
 void showResult(){
+
+   //simply outputs the list
+   //==============================
+
+   cout<<endl<<"============================================"<<endl;
    cout<<"Candidate->\t";
    for(int i=0; i<4;i++)
       cout<<head[i]<<"\t";
@@ -47,13 +71,19 @@ void showResult(){
       }
    }
 
-   cout<<endl<<"____________________________________________"<<endl;
+   cout<<endl<<"============================================"<<endl;
 
+   //Output the number of votes for
+   //each candidates
+   //==============================
    for(int i=0; i<4;i++){
-      cout<<head[i]<<" - "<<vote[i]<<endl;
+      cout<<head[i]<<" - "<<vote[i]<<endl<<endl;
    } 
-   cout<<"Total Vote : "<<toatalVote<<endl<<endl;
+   cout<<"Total Vote : "<<toatalVote<<endl;
    
+   cout<<endl<<"============================================"<<endl;
+   //Find the winner
+   //==============================
    for(int i=0; i<4; i++){
       if(vote[i] >= (toatalVote/2)){
          isRunOff = false;
@@ -61,6 +91,9 @@ void showResult(){
       }
    }
 
+   //if there is no winner check
+   //for run-off candidates.
+   //==============================
    if(isRunOff){
       fstVote = INT_MIN;
 
@@ -74,7 +107,7 @@ void showResult(){
       sndVote = INT_MIN;
 
       for(int i=0; i<4; i++){
-         if(i!=first && vote[i]>fstVote){
+         if(i!=first && vote[i]>sndVote){
             second = i;
             sndVote = vote[i];
          }
